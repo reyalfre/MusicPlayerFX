@@ -1,6 +1,7 @@
 module com.alfredo.musicplayerfx {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
 
 
     opens com.alfredo.musicplayerfx to javafx.fxml;

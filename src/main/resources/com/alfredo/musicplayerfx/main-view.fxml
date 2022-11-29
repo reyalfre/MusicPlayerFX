@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.media.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.alfredo.musicplayerfx.controller.MainViewController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="261.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alfredo.musicplayerfx.controller.MainViewController">
+   <center>
+      <FlowPane prefHeight="472.0" prefWidth="288.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="albumArt" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <VBox prefHeight="179.0" prefWidth="180.0">
+               <children>
+                  <MediaView fx:id="player" fitHeight="200.0" fitWidth="200.0" />
+                  <Label fx:id="titleMusic" alignment="CENTER" text="Label" />
+                  <Label fx:id="groupMusic" alignment="CENTER" text="Label" />
+                  <Label fx:id="albumMusic" alignment="CENTER" text="Label" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="prevButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#prevClicked" text="Button" />
+                        <ToggleButton fx:id="playPause" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#playPauseClicked" text="ToggleButton" />
+                        <Button fx:id="nextButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#nextClicked" text="Button" />
+                     </children>
+                  </HBox>
+                  <Slider fx:id="time" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+                  <Button fx:id="browse" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#browseClicked" text="Button" />
+               </children>
+            </VBox>
+            <Slider fx:id="volume" blockIncrement="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefWidth="125.0" value="50" />
+         </children>
+      </FlowPane>
+   </center>
+</BorderPane>
