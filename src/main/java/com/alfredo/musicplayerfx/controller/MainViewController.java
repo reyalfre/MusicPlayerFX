@@ -147,6 +147,7 @@ public class MainViewController implements Initializable {
         player = new MediaView(mediaPlayer);
         player.getMediaPlayer().getMedia().getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> change) -> {
             if (change.wasAdded()) {
+                handleMetadata(change.getKey(), change.getValueAdded());
                 if (change.getKey().equals("image")) {
                     Image art = (Image) change.getValueAdded();
                     System.out.println();
@@ -155,6 +156,10 @@ public class MainViewController implements Initializable {
                     albumArt.setImage(art);
                     albumArt.setX(50);
                 }
+                /*if (change.getKey().equals("artist")){
+                    titleMusic.setText("fdsfd");
+
+                }*/
             }
         });
         volume.valueProperty().addListener((Observable observable) -> {
@@ -178,6 +183,19 @@ public class MainViewController implements Initializable {
         }));
     }
 
+    private void handleMetadata(String key, Object valueAdded) {
+        if (key.equals("album")){
+            albumMusic.setText(valueAdded.toString());
+        }
+        if (key.equals("artist")){
+            groupMusic.setText(valueAdded.toString());
+        }
+        if (key.equals("title")){
+            titleMusic.setText(valueAdded.toString());
+        }
+
+    }
+
     @FXML
     private void prevClicked(ActionEvent event) {
         if (counter == 0) {
@@ -193,7 +211,7 @@ public class MainViewController implements Initializable {
             });
             player.getMediaPlayer().getMedia().getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> change) -> {
                 if (change.wasAdded()) {
-                    handleMetadata(change.getKey(), change.getValueAdded());
+                    //handleMetadata(change.getKey(), change.getValueAdded());
                     if (change.getKey().equals("image")) {
                         Image art = (Image) change.getValueAdded();
                         System.out.println("I'm in");
@@ -202,21 +220,16 @@ public class MainViewController implements Initializable {
                         albumArt.setImage(art);
                         albumArt.setX(50);
                     }
-                    if (change.getKey().equals("artist")){
-                        Label nombre = (Label) change.getValueAdded();
-                        System.out.println(nombre);
-
-                    }
                 }
             });
         }
     }
 
-    private void handleMetadata(String key, Object valueAdded) {
-        if (key.equals("title")){
+    /*private void handleMetadata(String key, Object valueAdded) {
+        if (key.equals("artist")){
             titleMusic.setText(valueAdded.toString());
         }
-    }
+    }*/
 
     @FXML
     private void nextClicked(ActionEvent event) {
