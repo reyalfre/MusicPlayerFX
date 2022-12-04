@@ -7,24 +7,24 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="261.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alfredo.musicplayerfx.controller.MainViewController">
    <center>
-      <FlowPane prefHeight="472.0" prefWidth="288.0" BorderPane.alignment="CENTER">
+      <FlowPane columnHalignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="albumArt" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <VBox prefHeight="179.0" prefWidth="180.0">
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <children>
                   <MediaView fx:id="player" fitHeight="200.0" fitWidth="200.0" />
                   <Label fx:id="titleMusic" alignment="CENTER" text="Label" />
                   <Label fx:id="groupMusic" alignment="CENTER" text="Label" />
                   <Label fx:id="albumMusic" alignment="CENTER" text="Label" />
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="prevButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#prevClicked" text="Button" />
-                        <ToggleButton fx:id="playPause" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#playPauseClicked" text="ToggleButton" />
-                        <Button fx:id="nextButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#nextClicked" text="Button" />
+                        <Button fx:id="prevButton" mnemonicParsing="false" onAction="#prevClicked" text="&lt;&lt;" />
+                        <ToggleButton fx:id="playPause" mnemonicParsing="false" onAction="#playPauseClicked" text="&gt;" />
+                        <Button fx:id="nextButton" mnemonicParsing="false" onAction="#nextClicked" text="&gt;&gt;" />
                      </children>
                   </HBox>
-                  <Slider fx:id="time" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-                  <Button fx:id="browse" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#browseClicked" text="Button" />
+                  <Slider fx:id="time" max="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+                  <Button fx:id="browse" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#browseClicked" text="Abrir" />
                </children>
             </VBox>
             <Slider fx:id="volume" blockIncrement="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefWidth="125.0" value="50" />

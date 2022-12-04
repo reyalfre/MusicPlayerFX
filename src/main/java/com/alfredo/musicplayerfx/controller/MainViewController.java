@@ -46,13 +46,12 @@ public class MainViewController implements Initializable {
     private File file;
     private FileChooser fileChooser;
     private Stage stage;
+    private MediaPlayer mediaPlayer;
+    private Media media;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Platform.runLater(() -> {
             playPause.requestFocus();
-        });
-
     }
 
     @FXML
@@ -66,10 +65,9 @@ public class MainViewController implements Initializable {
             file = fileChooser.showOpenDialog(stage);
             System.out.println(file);
             if (file != null) {
-                Media media;
                 media = new Media(file.toURI().toASCIIString());
                 mediaFiles.add(media);
-                MediaPlayer mediaPlayer = new MediaPlayer(media);
+                mediaPlayer = new MediaPlayer(media);
                 prevButton.setDisable(false);
                 nextButton.setDisable(false);
                 ++counter;
@@ -133,10 +131,9 @@ public class MainViewController implements Initializable {
         FileChooser.ExtensionFilter fileExtension = new FileChooser.ExtensionFilter("Audio files", "*.mp3", "*.wav");
         fileChooser.getExtensionFilters().add(fileExtension);
         file = fileChooser.showOpenDialog(stage);
-        Media media;
         media = new Media(file.toURI().toASCIIString());
         mediaFiles.add(media);
-        MediaPlayer mediaplayer = new MediaPlayer(media);
+        mediaPlayer = new MediaPlayer(media);
         try {
             player.getMediaPlayer().dispose();
         } catch (Exception e) {
@@ -146,8 +143,8 @@ public class MainViewController implements Initializable {
         nextButton.setDisable(false);
         playPause.setSelected(true);
         ++counter;
-        mediaplayer.setAutoPlay(true);
-        player = new MediaView(mediaplayer);
+        mediaPlayer.setAutoPlay(true);
+        player = new MediaView(mediaPlayer);
         player.getMediaPlayer().getMedia().getMetadata().addListener((MapChangeListener.Change<? extends String, ? extends Object> change) -> {
             if (change.wasAdded()) {
                 if (change.getKey().equals("image")) {
@@ -169,13 +166,16 @@ public class MainViewController implements Initializable {
         time.valueProperty().addListener((p,o,value) -> {
             if (time.isPressed()) {
                 System.out.println(time.getValue());
-                player.getMediaPlayer().seek(Duration.seconds(value.doubleValue()));
+                player.getMediaPlayer().seek(Duration.seconds(value.doubleValue()*mediaPlayer.getStopTime().toSeconds()));
                // player.getMediaPlayer().setAudioSpectrumInterval(time.getValue() / 100);
             }
         });
         player.getMediaPlayer().setOnEndOfMedia(() -> {
             playPause.setSelected(false);
         });
+        mediaPlayer.currentTimeProperty().addListener(((observable, oldValue, newValue) -> {
+            time.setValue(mediaPlayer.getCurrentTime().toMillis()/mediaPlayer.getStopTime().toMillis());
+        }));
     }
 
     @FXML
